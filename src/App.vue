@@ -1,28 +1,26 @@
 <template>
   <div class="container mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold text-center mb-8">Science Quiz App</h1>
+    <h1 class="text-4xl font-extrabold text-center mb-8 text-white">Science Quiz App</h1>
     
     <div class="quiz-container">
-      
-
       <div v-if="currentStep === 'tap-to-reveal'" class="mb-8">
-        <h2 class="text-xl font-semibold mb-4">Lesson 2.1</h2>
-        <p class="mb-4">Tap to Discover States of Matter!</p>
+        <h2 class="text-2xl font-semibold mb-4 text-primary">Lesson 2.1</h2>
+        <p class="mb-4 text-secondary">Tap to Discover States of Matter!</p>
         
         <TapToReveal @complete="goToSwipeUI" :key="quizKey" />
       </div>
       
       <div v-if="currentStep === 'swipe-ui'" class="mb-8">
-        <h2 class="text-xl font-semibold mb-4">Lesson 3.1</h2>
-        <p class="mb-4">Tap the arrows below the cards to swipe the cards in the direction of the correct change.</p>
+        <h2 class="text-2xl font-semibold mb-4 text-primary">Lesson 3.1</h2>
+        <p class="mb-4 text-secondary">Tap the arrows below the cards to swipe the cards in the direction of the correct change.</p>
         <SwipeUI @complete="onComplete" :key="quizKey" />
       </div>
       
       <div v-if="currentStep === 'complete'" class="text-center">
-        <h2 class="text-xl font-semibold mb-4">Great Job!</h2>
+        <h2 class="text-2xl font-semibold mb-4 text-success">Great Job!</h2>
         <button 
           @click="resetQuiz" 
-          class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+          class="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-4 rounded hover:scale-105 transform transition duration-300"
         >
           Try Again
         </button>
@@ -65,12 +63,27 @@ export default {
 <style>
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f5f5f5;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c, #ffb347, #ffcc33);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .container {
@@ -81,8 +94,41 @@ body {
   max-width: 600px;
   margin: 0 auto;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quiz-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+}
+
+.text-gradient {
+  /* background: linear-gradient(90deg, #ff7eb3, #ff7575); */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-primary {
+  color: #4c51bf;
+}
+
+.text-secondary {
+  color: #718096;
+}
+
+.text-success {
+  color: #48bb78;
+}
+
+button {
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
 }
 </style>

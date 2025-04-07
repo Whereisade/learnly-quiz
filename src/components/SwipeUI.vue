@@ -93,19 +93,19 @@ export default {
         {
           name: "Burning Paper",
           type: "chemical",
-          color: "#38bdf8", // blue
+          color: "#38bdf8", 
           icon: "/flame-icon.svg"
         },
         {
           name: "Melting Ice",
           type: "physical",
-          color: "#f97316", // orange
+          color: "#f97316", 
           icon: "/ice-icon.svg"
         },
         {
           name: "Rusting Metal",
           type: "chemical",
-          color: "#a855f7", // purple
+          color: "#a855f7", 
           icon: "/rust-icon.svg"
         }
       ],
@@ -127,7 +127,7 @@ export default {
     };
   },
   methods: {
-    // Touch events
+    
     startSwipe(e) {
       if (this.isTransitioning) return;
       this.startX = e.touches[0].clientX;
@@ -170,7 +170,7 @@ export default {
         this.resetCardPosition();
       }
     },
-    // Keyboard support for accessibility (simulate swipe with arrow keys)
+    
     onKeyDown(e) {
       if (e.key === 'ArrowLeft') {
         this.handleSwipe('left');
@@ -178,28 +178,28 @@ export default {
         this.handleSwipe('right');
       }
     },
-    // Update card position during swipe/drag
+    
     updateCardPosition() {
       this.translateX = this.currentX - this.startX;
-      this.rotation = this.translateX * 0.1; // rotation effect
+      this.rotation = this.translateX * 0.1;
     },
-    // Reset card position when swipe is not enough
+    
     resetCardPosition() {
       this.isTransitioning = true;
       this.translateX = 0;
       this.rotation = 0;
-      // Use transitionend event for more reliable state reset; fallback with timeout
+      
       setTimeout(() => {
         this.isTransitioning = false;
       }, 300);
     },
-    // Handle swipe action
+    
     handleSwipe(direction) {
       this.isTransitioning = true;
       const card = this.cards[this.currentCardIndex];
       const correctDirection = card.type === 'chemical' ? 'right' : 'left';
       if (direction === correctDirection) {
-        // Correct swipe
+        
         this.translateX = direction === 'right' ? window.innerWidth : -window.innerWidth;
         this.rotation = direction === 'right' ? 30 : -30;
         this.cardOpacity = 0;
@@ -213,18 +213,18 @@ export default {
           }
         }, 500);
       } else {
-        // Incorrect swipe
+        
         this.translateX = direction === 'right' ? 40 : -40;
         this.rotation = direction === 'right' ? 5 : -5;
         this.showFeedback("Try again! Swipe based on the type of change.", "error");
         this.showTryAgain = true;
-        // Allow user to try again after a short delay
+        
         setTimeout(() => {
           this.resetCard();
         }, 500);
       }
     },
-    // Reset the card to its initial state
+    
     resetCard() {
       this.isTransitioning = true;
       this.translateX = 0;
@@ -235,7 +235,7 @@ export default {
         this.showTryAgain = false;
       }, 300);
     },
-    // Display feedback message
+    
     showFeedback(message, type) {
       this.feedback = {
         visible: true,
@@ -248,7 +248,7 @@ export default {
         }, 3000);
       }
     },
-    // Handle transition end for reliable state updates
+    
     handleTransitionEnd() {
       this.isTransitioning = false;
     }
@@ -297,7 +297,7 @@ export default {
   color: rgb(239, 68, 68);
 }
 
-/* Responsive styling */
+
 @media (max-width: 640px) {
   .swipe-card {
     width: 200px;

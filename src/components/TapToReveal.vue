@@ -49,14 +49,14 @@ export default {
       cards: [
         {
           name: "Gas",
-          description: "A gas expands to fill any container. Its particles move rapidly and spread apart.",
+          description: "it expands to fill any container as its particles move and spread out.",
           color: "#e2e8f0",
           icon: "/gas-icon.svg",
           flipped: false
         },
         {
           name: "Liquid",
-          description: "A liquid takes the shape of its container but keeps its volume. Its particles are close together.",
+          description: "A liquid keeps its volume, takes container’s shape",
           color: "#a855f7",
           icon: "/liquid-icon.svg",
           flipped: false
@@ -70,7 +70,7 @@ export default {
         },
         {
           name: "Lightning",
-          description: "A form of electricity resulting from the discharge between clouds.",
+          description: "Electricity resulting from the discharge between clouds.",
           color: "#3b82f6",
           icon: "/lightning-icon.svg",
           flipped: false
@@ -101,7 +101,6 @@ export default {
   perspective: 1000px;
   height: 180px;
   outline: none;
-  
 }
 
 .card {
@@ -112,18 +111,18 @@ export default {
   transition: transform 0.6s;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
 }
 
 .card.flipped {
   transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
+  backface-visibility: hidden; 
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -131,15 +130,13 @@ export default {
   justify-content: center;
 }
 
-.card-back {
-  transform: rotateY(180deg);
+.card-front {
+  z-index: 2; 
 }
 
-.card-icon {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.card-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+  color: #000;
 }
 </style>
