@@ -3,12 +3,12 @@
     <h1 class="text-2xl font-bold text-center mb-8">Science Quiz App</h1>
     
     <div class="quiz-container">
-      <!-- Removed unused router-view -->
+      
 
       <div v-if="currentStep === 'tap-to-reveal'" class="mb-8">
         <h2 class="text-xl font-semibold mb-4">Lesson 2.1</h2>
         <p class="mb-4">Tap to Discover States of Matter!</p>
-        <!-- Use :key to force a re-render and reset component state -->
+        
         <TapToReveal @complete="goToSwipeUI" :key="quizKey" />
       </div>
       
@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       currentStep: 'tap-to-reveal',
-      quizKey: 0 // Used to force re-render child components on reset
+      quizKey: 0 
     };
   },
   methods: {
@@ -55,7 +55,7 @@ export default {
       this.currentStep = 'complete';
     },
     resetQuiz() {
-      this.quizKey++; // Increment to reset child component state
+      this.quizKey++;
       this.currentStep = 'tap-to-reveal';
     }
   }
@@ -66,7 +66,17 @@ export default {
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
+
+.container {
+  text-align: center;
+}
+
 .quiz-container {
   max-width: 600px;
   margin: 0 auto;
